@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: llm-council
+    env: python
+    buildCommand: cd frontend && npm install && npm run build && cd .. && uv sync
+    startCommand: uv run python -m backend.main
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: PORT
+        value: 8001
+      - key: CORS_ORIGINS
+        value: https://llm-council.onrender.com
+
